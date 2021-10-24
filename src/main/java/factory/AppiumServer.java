@@ -14,19 +14,15 @@ public class AppiumServer {
 
     public static void startAppiumServer(String deviceType) {
 
-            AppiumServiceBuilder builder = new AppiumServiceBuilder();
-            switch (deviceType) {
-                case "realDevice":
-                    builder.withIPAddress("0.0.0.0").usingPort(4728);
-                    break;
-                default:
-                    builder.withIPAddress("127.0.0.1").usingAnyFreePort();
-                    break;
+        AppiumServiceBuilder builder = new AppiumServiceBuilder();
+        if ("realDevice".equals(deviceType)) {
+            builder.withIPAddress("0.0.0.0").usingPort(4728);
+        } else {
+            builder.withIPAddress("127.0.0.1").usingAnyFreePort();
+        }
 
-            }
-
-            service = AppiumDriverLocalService.buildService(builder);
-        if(!service.isRunning())
+        service = AppiumDriverLocalService.buildService(builder);
+        if (!service.isRunning())
             service.start();
         else
             System.out.println("service is running..");

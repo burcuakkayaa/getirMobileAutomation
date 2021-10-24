@@ -13,8 +13,7 @@ public class BasketScreen {
     private final By productListXpath = By.xpath("//android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.LinearLayout[1]");
 
 
-
-    public String  getPrice() {
+    public String getPrice() {
         element.waitUntilVisibleBy(totalPrice);
         return element.getText(totalPrice);
     }
@@ -23,9 +22,9 @@ public class BasketScreen {
 
         while (element.isElementPresent(productListXpath)) {
             try {
-                List<MobileElement> productList =  element.getMobileElements(productListXpath);
+                List<MobileElement> productList = element.getMobileElements(productListXpath);
                 productList.get(0).click();
-            }catch (Exception e) {
+            } catch (Exception e) {
                 break;
             }
 

@@ -14,12 +14,10 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 
-
-
 public class ElementUtil {
 
     private final int timeOut = 60;
-    protected WebDriverWait wait =null;
+    protected WebDriverWait wait;
     protected AndroidDriver<MobileElement> driver = ThreadLocalDriver.getTLDriver();
 
     public ElementUtil() {
@@ -32,7 +30,7 @@ public class ElementUtil {
 
     }
 
-    public List<MobileElement>  getMobileElements(By locator) {
+    public List<MobileElement> getMobileElements(By locator) {
 
         return driver.findElements(locator);
     }

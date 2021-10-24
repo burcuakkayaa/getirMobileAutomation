@@ -20,18 +20,18 @@ public class BaseHooks {
     public static AppiumDriver<MobileElement> driver;
 
 
-
     @Before(order = 0)
-    public void init(Scenario scenario)  {
+    public void init(Scenario scenario) {
         String name = scenario.getName();
         System.out.println("Scenario name: " + scenario.getName());
 
     }
+
     @Before("@realDevice")
     public void launchDriverAsRealDevice() throws MalformedURLException {
         mobileDriver = new MobileDriver();
         AppiumServer.startAppiumServer("realDevice");
-        driver =  mobileDriver.startMobileDriver("realDevice");
+        driver = mobileDriver.startMobileDriver("realDevice");
 
     }
 
@@ -39,17 +39,17 @@ public class BaseHooks {
     public void launchDriverAsEmulator() throws MalformedURLException {
         mobileDriver = new MobileDriver();
         AppiumServer.startAppiumServer("emulator");
-        driver =  mobileDriver.startMobileDriver("emulator");
+        driver = mobileDriver.startMobileDriver("emulator");
     }
 
     @After(order = 1)
     public void quit(Scenario scenario) {
 
-        if(scenario.isFailed()) {
+        if (scenario.isFailed()) {
 
-            String screenshotName=  scenario.getName().replaceAll(" ", "_");
+            String screenshotName = scenario.getName().replaceAll(" ", "_");
 
-            byte[] sourcePath = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+            byte[] sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
 
             scenario.attach(sourcePath, "image/png", screenshotName);
 
